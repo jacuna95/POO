@@ -10,7 +10,14 @@ public class Main {
         Nacho trabaja= new Nacho();
         System.out.println("Hola Clase");
 
-        Martha linda= new Martha("Hola profesor de Nacho");
+        Martha madre= new Martha("Hola profesor de Nacho");
+        madre.setAge();
+
+        int age= madre.getAge();
+
+        String hobby= madre.getHobby();
+
+        System.out.println("My age is: " + age+" and i like "+hobby);
     }
 
 
