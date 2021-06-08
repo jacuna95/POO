@@ -1,12 +1,12 @@
 package com.ucreativa.familia;
 
-public class prueba {
+public class Practica {
 
     private int ID;
     private String nombre;
     private double Valor;
 
-    public prueba(int ID, String nombre, double valor) {
+    public Practica(int ID, String nombre, double valor) {
         this.ID = ID;
         this.nombre = nombre;
         Valor = valor;
