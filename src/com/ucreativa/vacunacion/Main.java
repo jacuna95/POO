@@ -5,8 +5,10 @@ import com.ucreativa.vacunacion.entities.BitacoraVacunas;
 import com.ucreativa.vacunacion.entities.Familiar;
 import com.ucreativa.vacunacion.entities.Persona;
 import com.ucreativa.vacunacion.entities.amigo;
+import com.ucreativa.vacunacion.repositories.FileRepository;
 import com.ucreativa.vacunacion.repositories.inMemoryRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +16,10 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner in = new Scanner(System.in);
-        inMemoryRepository repo = new inMemoryRepository();
+        FileRepository repo = new FileRepository();
         List<BitacoraVacunas> db = new ArrayList<>();
 
         while (true) {
@@ -54,10 +56,10 @@ public class Main {
             System.out.println("Quiere imprimir listado, indique (S): ");
             String print = in.nextLine();
             if (print.equals("S")) {
-                for (String item : repo.get()) {
-                    System.out.println(item);
-                }
-
+              /** for (String item : repo.get()) {
+                   System.out.println(item);
+                }**/
+            repo.get();
             }
 
 
