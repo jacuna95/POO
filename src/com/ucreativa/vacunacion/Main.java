@@ -1,17 +1,10 @@
 package com.ucreativa.vacunacion;
 
 
-import com.ucreativa.vacunacion.entities.BitacoraVacunas;
-import com.ucreativa.vacunacion.entities.Familiar;
-import com.ucreativa.vacunacion.entities.Persona;
-import com.ucreativa.vacunacion.entities.amigo;
 import com.ucreativa.vacunacion.repositories.FileRepository;
-import com.ucreativa.vacunacion.repositories.inMemoryRepository;
+import com.ucreativa.vacunacion.services.BitacoraService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -19,12 +12,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         Scanner in = new Scanner(System.in);
-        FileRepository repo = new FileRepository();
-        List<BitacoraVacunas> db = new ArrayList<>();
+        BitacoraService service = new BitacoraService(new FileRepository());
 
         while (true) {
-            String nombre, cedula, edad, riesgo, isAmigo, relacion, facebook, parentesco, marca;
-            Persona persona;
+            String nombre, cedula, edad, riesgo, isAmigo, relacion = "", facebook = "", parentesco = "", marca;
 
             System.out.println("Digite su nombre: ");
             nombre = in.nextLine();
@@ -41,29 +32,21 @@ public class Main {
                 relacion = in.nextLine();
                 System.out.println("Facebook: ");
                 facebook = in.nextLine();
-                persona = new amigo(nombre, cedula, Integer.parseInt(edad), riesgo.equals("S"), relacion, facebook);
             } else {
                 System.out.println("Parentesco: ");
                 parentesco = in.nextLine();
-                persona = new Familiar(nombre, cedula, Integer.parseInt(edad), riesgo.equals("S"), parentesco);
             }
             System.out.println("Vacuna--Marca:");
             marca = in.nextLine();
 
-            repo.save(persona, marca, new Date());
-
+            service.save(nombre,cedula,edad,riesgo,isAmigo,relacion,facebook,parentesco,marca);
 
             System.out.println("Quiere imprimir listado, indique (S): ");
             String print = in.nextLine();
             if (print.equals("S")) {
-              /** for (String item : repo.get()) {
-                   System.out.println(item);
-                }**/
-            repo.get();
+
+            service.get();
             }
-
-
         }
-
     }
 }

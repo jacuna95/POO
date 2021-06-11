@@ -10,7 +10,7 @@ public interface Repository {
 
     void save(Persona persona, String marca, Date fecha);
 
-    void get() throws IOException;
+    List<String> get() throws IOException;
 
 
 }

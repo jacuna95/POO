@@ -27,7 +27,7 @@ public class FileRepository implements Repository {
     }
 
     @Override
-    public void get() throws IOException {
+    public List<String> get() throws IOException {
         FileWriter archivoDatos = new FileWriter("C:/Users/jacuna.CMC/Desktop/U/3bimestre/datos/datos.txt");
         SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
 
@@ -36,5 +36,6 @@ public class FileRepository implements Repository {
 
         }
     archivoDatos.close();
+        return null;
     }
 }
