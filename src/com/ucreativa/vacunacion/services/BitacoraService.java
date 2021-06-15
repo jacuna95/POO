@@ -17,18 +17,18 @@ public class BitacoraService {
     }
 
     public void save(String nombre, String cedula, String txtEdad,
-                     String txtRiesgo, String txtIsAmigo,
+                     boolean txtRiesgo, boolean txtIsAmigo,
                      String relacion, String facebook, String parentesco,
                      String marca) {
         int edad = Integer.parseInt(txtEdad);
-        boolean riesgo = txtRiesgo.equals("S");
-        boolean isAmigo = txtIsAmigo.equals("S");
+       /* boolean riesgo = txtRiesgo.equals("S");
+        boolean isAmigo = txtIsAmigo.equals("S");*/
         Persona persona;
 
-        if (isAmigo) {
-            persona = new amigo(nombre, cedula, edad, riesgo, relacion, facebook);
+        if (txtIsAmigo) {
+            persona = new amigo(nombre, cedula, edad, txtRiesgo, relacion, facebook);
         } else {
-            persona = new Familiar(nombre, cedula, edad, riesgo, parentesco);
+            persona = new Familiar(nombre, cedula, edad, txtRiesgo, parentesco);
         }
         this.repository.save(persona, marca, new Date());
     }
