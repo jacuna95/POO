@@ -70,25 +70,31 @@ public class FrontEnd extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BitacoraService service = new BitacoraService(new FileRepository());
-                service.save(txtNombre.getText(),
-                        txtcedula.getText(),
-                        txtedad.getText(),
-                        txtriesgo.isSelected(),
-                        txtisAmigo.isSelected(),
-                        txtrelacion.getText(),
-                        txtfacebook.getText(),
-                        txtparentesco.getText(),
-                        txtmarca.getText());
+                try {
+                    service.save(txtNombre.getText(),
+                            txtcedula.getText(),
+                            txtedad.getText(),
+                            txtriesgo.isSelected(),
+                            txtisAmigo.isSelected(),
+                            txtrelacion.getText(),
+                            txtfacebook.getText(),
+                            txtparentesco.getText(),
+                            txtmarca.getText());
 
-                txtNombre.setText("");
-                txtcedula.setText("");
-                txtedad.setText("");
-                txtriesgo.setText("");
-                txtisAmigo.setText("");
-                txtrelacion.setText("");
-                txtfacebook.setText("");
-                txtparentesco.setText("");
-                txtmarca.setText("");
+                    txtNombre.setText("");
+                    txtcedula.setText("");
+                    txtedad.setText("");
+                    txtriesgo.setText("");
+                    txtisAmigo.setText("");
+                    txtrelacion.setText("");
+                    txtfacebook.setText("");
+                    txtparentesco.setText("");
+                    txtmarca.setText("");
+                } catch (ErrorEnEdadException error) {
+                    JOptionPane.showMessageDialog(((JButton)e.getSource()).getParent(), error.getMessage());
+                }
+
+
 
                 String reporte = null;
                 try {
